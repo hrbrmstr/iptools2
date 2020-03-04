@@ -8,7 +8,6 @@
 #include <asio/ip/network_v6.hpp>
 
 using namespace Rcpp;
-using namespace asio;
 
 namespace ip = asio::ip;
 
