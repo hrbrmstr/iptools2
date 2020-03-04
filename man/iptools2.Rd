@@ -3,12 +3,14 @@
 \docType{package}
 \name{iptools2}
 \alias{iptools2}
-\alias{iptools2-package}
-\title{...}
+\title{A WIP Re-imagining of {iptools}}
 \description{
+A WIP Re-imagining of {iptools}
+}
+\details{
 \itemize{
-\item URL: \url{https://gitlab.com/hrbrmstr/iptools2}
-\item BugReports: \url{https://gitlab.com/hrbrmstr/iptools2/issues}
+\item URL: \url{https://git.rud.is/hrbrmstr/iptools2}
+\item BugReports: \url{https://git.rud.is/hrbrmstr/iptools2/issues}
 }
 }
 \author{

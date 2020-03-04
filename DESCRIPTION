@@ -1,6 +1,6 @@
 Package: iptools2
 Type: Package
-Title: iptools2 title goes here otherwise CRAN checks fail
+Title: A WIP Re-imagining of {iptools}
 Version: 0.1.0
 Date: 2019-04-29
 Authors@R: c(
@@ -8,18 +8,23 @@ Authors@R: c(
            comment = c(ORCID = "0000-0001-5670-2640"))
   )
 Maintainer: Bob Rudis <bob@rud.is>
-Description: A good description goes here otherwise CRAN checks fail.
-URL: https://gitlab.com/hrbrmstr/iptools2
-BugReports: https://gitlab.com/hrbrmstr/iptools2/issues
+Description: A WIP Re-imagining of {iptools}
+URL: https://git.rud.is/hrbrmstr/iptools2
+BugReports: https://git.rud.is/hrbrmstr/iptools2/issues
 Encoding: UTF-8
-License: AGPL
+SystemRequirements: C++11
+License: MIT + file LICENSE
 Suggests:
     testthat,
     covr
 Depends:
     R (>= 3.2.0)
 Imports:
-    httr,
-    jsonlite
+    Rcpp,
+    AsioHeaders
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
+LinkingTo: 
+    Rcpp,
+    AsioHeaders,
+    BH
