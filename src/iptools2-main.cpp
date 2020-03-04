@@ -147,23 +147,21 @@ static double power_lookup_tbl(unsigned pow) {
   return -1.0;
 }
 
-struct split {
-  enum empties_t { empties_ok, no_empties };
-};
+enum empties_t { empties_ok, no_empties };
 
 template <typename Container>
 Container& split(
     Container&                            result,
     const typename Container::value_type& s,
     const typename Container::value_type& delimiters,
-    split::empties_t                      empties = split::empties_ok )
+    empties_t                      empties = empties_ok )
 {
   result.clear();
   size_t current;
   size_t next = -1;
   do
   {
-    if (empties == split::no_empties)
+    if (empties == no_empties)
     {
       next = s.find_first_not_of( delimiters, next + 1 );
       if (next == Container::value_type::npos) break;
@@ -177,6 +175,17 @@ Container& split(
   return result;
 }
 
+//' Retrieve range boundaries for a character vector of IPv4/IPv6 CIDRs
+//'
+//' @param cidr a character vector of IPv4/IPv6 CIDRs
+//' @return data frame with original input, canonical CIDR, start/end (chr) of range and number of hosts.
+//' @note the `n_hosts` column is a numeric vector since R cannot handle 128-bit integers easily and
+//'       v4 & v6 are co-mingled.
+//' @export
+//' @examples
+//' range_boundaries(
+//'   c("2001:4801::/32", "2001:0db8::/127", "10.1.10.0/24", "2001:0db8::/119", "wat")
+//' )
 // [[Rcpp::export]]
 DataFrame range_boundaries(std::vector < std::string > cidr) {
 
@@ -191,7 +200,7 @@ DataFrame range_boundaries(std::vector < std::string > cidr) {
       try {
         ip::network_v6 net = ip::make_network_v6(cidr[i]);
         ip::address_v6_range rng = net.hosts();
-        sz[i] = power_lookup_tbl(128-net.prefix_length());
+        sz[i] = power_lookup_tbl(128 - net.prefix_length());
         canon[i] = net.canonical().to_string();
         cstart[i] = (rng.begin())->to_string();
         cend[i] = (rng.end())->to_string();
